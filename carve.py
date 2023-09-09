@@ -45,8 +45,8 @@ if args.format == "bin":
 if args.format == "py":
     print("shellcode = b\"", end="")
     for i in range(len(text)):
-        if text[i] == 0:
-             print(f"\\x{hex(text[i])[2:]}0", end="")
+        if len(hex(text[i])) == 3: # Need to add a preceding zero to single digit hex values
+             print(f"\\x0{hex(text[i])[2:]}", end="")
         else:
             print(f"\\x{hex(text[i])[2:]}", end="")
     print("\"", end="")
